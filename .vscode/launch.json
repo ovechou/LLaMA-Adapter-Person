@@ -14,8 +14,8 @@
             "args": [
                 "--nproc_per_node", "1",
                 "example.py",
-                "--ckpt_dir", "LLaMA-7B",
-                "--tokenizer_path", "LLaMA-7B/tokenizer.model",
+                "--ckpt_dir", "llama-2-7b",
+                "--tokenizer_path", "llama-2-7b/tokenizer.model",
                 "--adapter_path", "llama_adapter_weight/llama_adapter_len10_layer30_release.pth"
             ]
         },
@@ -23,14 +23,16 @@
             "name": "Training",
             "type": "debugpy",
             "request": "launch",
+            "cwd": "${workspaceFolder}/alpaca_finetuning_v1",
             "console": "integratedTerminal",
             "module": "torch.distributed.launch",
             "justMyCode": true,
             "args": [
                 "--nproc_per_node", "1",
+                "finetuning.py",
                 "--model", "Llama7B_adapter",
-                "llama_model_path", "./LLaMA-7B",
-                "--data_path", "alpaca_finetuning_v1/data_path/alpaca_data.json",
+                "llama_model_path", "./llama-2-7b",
+                "--data_path", "alpaca_data.json",
                 "--adapter_layer", "30",
                 "--adapter_len", "10",
                 "--max_seq_len", "512",

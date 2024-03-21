@@ -27,6 +27,8 @@ class ModelArgs:
     adapter_len: int = 10
     adapter_layer: int = 8
 
+    quantizer: bool = False
+
 
 class RMSNorm(torch.nn.Module):
     def __init__(self, dim: int, eps: float = 1e-6):

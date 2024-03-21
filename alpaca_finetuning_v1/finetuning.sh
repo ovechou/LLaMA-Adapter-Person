@@ -1,7 +1,7 @@
-torchrun --nproc_per_node 8 finetuning.py \
+torchrun --nproc_per_node 1 finetuning.py \
     --model Llama7B_adapter \
-    --llama_model_path $TARGET_FOLDER/ \
-    --data_path $DATA_PATH/alpaca_data.json \
+    --llama_model_path ../llama-2-7b/ \
+    --data_path data_path/alpaca_data.json \
     --adapter_layer 30 \
     --adapter_len 10 \
     --max_seq_len 512 \

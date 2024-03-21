@@ -8,6 +8,7 @@ __pycache__/
 
 # Exclude llama weight
 LLaMA-7B
+llama-2-7b
 
 # Distribution / packaging
 .Python
