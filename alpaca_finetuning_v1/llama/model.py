@@ -163,7 +163,12 @@ class TransformerBlock(nn.Module):
     def forward(
         self, x: torch.Tensor, start_pos: int, freqs_cis: torch.Tensor, mask: Optional[torch.Tensor], adapter=None
     ):
-
+        '''
+          The loss is nan.
+          it causes the value more than 65504 or less than -65504 will become inf or -inf. 
+          These abnormal values will cause the loss to be nan.
+        '''
+        x = x.clamp(min=-65500, max=65500)
         h = x + self.attention.forward(self.attention_norm(x), start_pos, freqs_cis, mask, adapter)
         out = h + self.feed_forward.forward(self.ffn_norm(h))
         return out
