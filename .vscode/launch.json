@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Inference",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "module": "torch.distributed.launch",
+            "justMyCode": true,
+            "args": [
+                "--nproc_per_node", "1",
+                "example.py",
+                "--ckpt_dir", "LLaMA-7B",
+                "--tokenizer_path", "LLaMA-7B/tokenizer.model",
+                "--adapter_path", "llama_adapter_weight/llama_adapter_len10_layer30_release.pth"
+            ]
+        },
+        {
+            "name": "Training",
+            "type": "debugpy",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "module": "torch.distributed.launch",
+            "justMyCode": true,
+            "args": [
+                "--nproc_per_node", "1",
+                "--model", "Llama7B_adapter",
+                "llama_model_path", "./LLaMA-7B",
+                "--data_path", "alpaca_finetuning_v1/data_path/alpaca_data.json",
+                "--adapter_layer", "30",
+                "--adapter_len", "10",
+                "--max_seq_len", "512",
+                "--batch_size", "4",
+                "--epoch", "5",
+                "--warmup_epochs", "2",
+                "--blr", "9e-3",
+                "--weight_decay", "1e-2",
+                "--output_dir", "./checkpoint/put"
+            ]
+        }
+    ]
+}

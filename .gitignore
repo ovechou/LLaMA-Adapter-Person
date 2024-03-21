@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Exclude llama weight
-llama_weight
+LLaMA-7B
 
 # Distribution / packaging
 .Python
